@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+<script type="text/javascript">
+    $("#red").hide();
+    $("#green").hide();
+
+    $(function update() {
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:5000/status",
+          contentType: "application/json; charset=utf-8",
+          success: function(data) {
+            if (data.value == true) {
+              $("#red").hide();
+              $("#green").hide();
+              $("#green").show();
+            } else {
+              $("#red").hide();
+              $("#green").hide();
+              $("#red").show();
+            }
+              }
+        });
+
+        setInterval(function(){
+            update();
+            }, 1000);
+
+        $("#submitBtn").click(function() {
+          update();
+            });
+          });
+  </script>
+
+
+<h1>Motion Status</h1>
+<br><br><br><br>
+<center id="red">
+  <svg> xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="50" fill="red" />
+</svg>
+</center>
+
+<center id="green">
+  <svg> xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="50" fill="green" />
+  </svg>
+</center>
+
+<br><br><br>
+
+
+
+
+
+{% endblock %}
