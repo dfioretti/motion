@@ -4,32 +4,31 @@
     $("#red").hide();
     $("#green").hide();
 
-    $(function update() {
-        $.ajax({
-          type: "GET",
-          url: "http://localhost:5000/status",
-          contentType: "application/json; charset=utf-8",
-          success: function(data) {
-            if (data.value == true) {
-              $("#red").hide();
-              $("#green").hide();
-              $("#green").show();
-            } else {
-              $("#red").hide();
-              $("#green").hide();
-              $("#red").show();
-            }
-              }
-        });
-
+    $(function () {
         setInterval(function(){
             update();
-            }, 1000);
+        }, 1000);
+     });
 
-        $("#submitBtn").click(function() {
-          update();
-            });
-          });
+        function update() {
+          $.ajax({
+              type: "GET",
+              //url: "http://52.26.199.6/status",
+              url: "http://localhost:5000/status",
+              contentType: "application/json; charset=utf8",
+              success: function(data) {
+                if (data.value == true) {
+                  $("#red").hide();
+                  $("#green").hide();
+                  $("#green").show();
+                } else {
+                  $("#red").hide();
+                  $("#green").hide();
+                  $("#red").show();
+                }
+              }
+           });
+        }
   </script>
 
 
